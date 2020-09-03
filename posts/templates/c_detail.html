@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<div class = "container">
+       <h1>상세보기</h1>
+       <div class = "m-1"></div>
+
+       <table class = "table table-hover">
+           <thead class = "thead-dark">
+           <tr>
+
+               <th scope = "col">글 내용</th>
+               <th scope = "col">작성자</th>
+
+
+           </tr>
+           </thead>
+           <tbody>
+
+               <tr>
+
+                   <td>{{ comment.contents_comment }}</td>
+                   <td>{{ comment.author_comment }}</td>
+               </tr>
+
+           </tbody>
+       </table>
+    {% endblock %}

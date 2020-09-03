@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+{% block container %}
+
+<div class = "container">
+       <h1>상세보기</h1>
+       <div class = "m-1"></div>
+
+       <table class = "table table-hover">
+           <thead class = "thead-dark">
+           <tr>
+
+               <th scope = "col">글 내용</th>
+               <th scope = "col">작성자</th>
+
+
+           </tr>
+           </thead>
+           <tbody>
+
+               <tr>
+
+                   <td>{{ post.contents }}</td>
+                   <td>{{ post.author }}</td>
+               </tr>
+
+           </tbody>
+       </table>
+       <a class = "btn btn-primary" href = "{% url 'posts:update' post.id %}" class = "btn btn-warning">수정</a>
+       <a class = "btn btn-primary" href= "{% url 'posts:delete' post.id %}" class = "btn btn-danger">삭제</a>
+       <div class="m-1"></div>
+       <a class = "btn btn-primary" href = "{% url 'posts:add_comment_to_post' post.id %}">새댓글작성</a>
+       <div class="m-1"></div>
+       <table class = "table table-hover">
+           <thead class = "thead-dark">
+       <tr>
+               <th scope = "col">#</th>
+               <th scope = "col">제목</th>
+               <th scope = "col">작성자</th>
+               <th scope = "col">수정</th>
+               <th scope = "col">삭제</th>
+
+       </tr>
+       <tbody>
+               {% for comment in post.comment_set.all %}
+               <tr>
+                   <th scope = "row">{{ comment.id }}</th>
+                   <td><a href="/posts/{{ comment.id }}/c_detail">{{ comment.contents_comment }}</a></td>
+                   <td>{{ comment.author_comment }}</td>
+                   <td>
+                       <a href = "{% url 'posts:update_comment' comment.id %}" class = "btn btn-warning">수정</a>
+                   </td>
+                   <td>
+                       <a href= "{% url 'posts:delete_comment' comment.id %}" class = "btn btn-danger">삭제</a>
+                   </td>
+               </tr>
+               {% endfor %}
+       </tbody>
+       </div>
+
+{% endblock %}
